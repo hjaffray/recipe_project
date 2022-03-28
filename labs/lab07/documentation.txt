@@ -1,0 +1,5 @@
+MongoDB Documentation:
+https://docs.mongodb.com/
+
+Regex in MongoDB:
+https://docs.atlas.mongodb.com/atlas-search/regex/

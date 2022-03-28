@@ -1,11 +1,11 @@
 import express from 'express';
-import * as users from './users';
+import * as controller from './users.control';
 
 let router = express.Router();
 
-router.get('/', users.listContents);
-router.get('/:id', users.findOne);
-router.post('/', users.createUser);
-router.put('/:id', users.updateUser);
-router.delete('/:id', users.removeUser);
+router.get('/', controller.index);
+router.get('/:id', controller.show);
+router.post('/', controller.create);
+router.put('/:id', controller.upsert);
+router.delete('/:id', controller.destroy);
 export {router};
