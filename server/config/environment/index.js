@@ -35,16 +35,12 @@ var all = {
         session: 'web2-secret'
     },
 
-    // MongoDB connection options
+    // MongoDB connection options EDIT FROM LAB09 12/22/22
     mongo: {
-        enabled: false,
+        enabled: true,
         options: {
-            db: {
-                safe: true
-            },
             useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
+            useUnifiedTopology: true
         }
     },
 

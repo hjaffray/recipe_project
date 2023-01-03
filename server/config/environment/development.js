@@ -13,10 +13,10 @@ try {
 // ==================================
 module.exports = _.merge(
     {
-    // MongoDB connection options
+    // MongoDB connection options EDIT FOR LAB09 12/22/22
     mongo: {
         useMongoClient: true,
-        uri: process.env.MONGODB_URI || 'mongodb://web2-mongodb/web2-template-dev'
+        uri: process.env.MONGODB_URI || 'mongodb://web2-mongodb/web2-henjaffr'
     },
     // Seed database on startup
         seedDB: true
