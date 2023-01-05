@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
   This section declares the schemas for the different documents
   that will be used
  */
+
 // This schema represents the address of the user
 let addressSchema = Schema({
   // addressLine1 is a simple String type that is required
