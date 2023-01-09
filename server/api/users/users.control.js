@@ -1,5 +1,5 @@
 'use strict';
-import {Address, User} from './users.model';
+import {User} from './users.model';
 // Find all Users
 export function index(req, res) {
   /*
@@ -23,7 +23,7 @@ export function index(req, res) {
        callbacks because, instead of nesting functions within functions, you can
        chain function calls together and pass the return value from one function
        as the argument to the next! It also allows you to have one method to handle
-       exceptions, instead of having to provide them in each callback function you 
+       exceptions, instead of having to provide them in each callback function you
 write
        http://www.javascriptkit.com/javatutors/javascriptpromises.shtml
        http://bluebirdjs.com/docs/why-promises.html
@@ -36,7 +36,7 @@ write
       });
     })
     /*
-     Any errors encountered here must be server side, since there are no arguments 
+     Any errors encountered here must be server side, since there are no arguments
 to the find
      Return 500 (server error) and send the error encountered back to the requester
     */
@@ -130,9 +130,9 @@ export function update(req, res) {
         existingUser.name.lastName = req.body.name.lastName;
         /*
          Promise.all takes an array of promises as an argument
-         It ensures that all the promises in the array have successfully resolved 
+         It ensures that all the promises in the array have successfully resolved
 before
-         continuing the promise chain. It will pass to the next .then an array of 
+         continuing the promise chain. It will pass to the next .then an array of
 results, one
          for each promise that was passed
         */
@@ -176,7 +176,7 @@ export function destroy(req, res) {
           This is the equivalent of cascading delete in a relational database
           If the user was found, remove both the user object and the address object
 from
-          their respective collections. Only record the delete as successful if 
+          their respective collections. Only record the delete as successful if
 both objects
           are deleted
          */
