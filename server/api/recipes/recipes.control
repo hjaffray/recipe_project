@@ -1,38 +1,14 @@
 'use strict';
-import {User} from './users.model';
-// Find all Users
+import {Recipe} from './recipes.model';
+// Find all Recipes
 export function index(req, res) {
-    /*
-     The pattern you see below where one function is
-     called right after the other is called method chaining,
-     and is a common practice in JavaScript and many other languages
-     https://en.wikipedia.org/wiki/Method_chaining
-     */
-    User.find()
-        /*
-           For each user object, populate the address attribute.
-           This will make all the attributes available in the address
-           accessible as though the address were a subdocument by joining
-           the two tables for you
-           http://mongoosejs.com/docs/populate.html
-        */
-        .populate('address')
-        /*
-           exec() runs the query and returns a promise object.
-           Promises are a cleaner way to chain asynchronous actions together than
-           callbacks because, instead of nesting functions within functions, you can
-           chain function calls together and pass the return value from one function
-           as the argument to the next! It also allows you to have one method to handle
-           exceptions, instead of having to provide them in each callback function you
-    write
-           http://www.javascriptkit.com/javatutors/javascriptpromises.shtml
-           http://bluebirdjs.com/docs/why-promises.html
-        */
+    Recipe.find()
+        .populate('recipeName')
         .exec()
         // This then method will only be called if the query was successful, so no need to error check!
-        .then(function(users) {
+        .then(function(recipes) {
             res.json({
-                users
+                recipes
             });
         })
         /*
@@ -45,24 +21,24 @@ export function index(req, res) {
             res.send(err);
         });
 }
-// Find details for one user
+// Find details for one recipe
 export function show(req, res) {
-    User.findById(req.params.id)
-        .populate('address')
+    Recipe.findById(req.params.id)
+        .populate('recipeName')
         .exec()
-        .then(function(existingUser) {
+        .then(function(existingRecipe) {
             /*
              findById will return null if the object was not found
-             This if check will evaluate to false for a null user
+             This if check will evaluate to false for a null recipe
             */
-            if(existingUser) {
-                // User was found by Id
+            if(existingRecipe) {
+                // Recipe was found by Id
                 res.status(200);
-                res.json(existingUser);
+                res.json(existingRecipe);
             } else {
-                // User was not found
+                // Recipe was not found
                 res.status(404);
-                res.json({message: 'Not Found'});
+                res.json({message: 'Recipe Not Found'});
             }
         })
         .catch(function(err) {
@@ -80,16 +56,17 @@ export function create(req, res) {
       we must create each document individually, and then associate
       the address to the user after we know its id
     */
+    let recipe = req.body.recipeName;
     let address = req.body.address;
     let user = req.body;
     // Start off by saving the address
-    Address.create(address)
+    Recipe.create(recipe)
         /*
          Address was successfully saved, now associate saved address to the
          user we are about to create and then save the user
         */
-        .then(function(createdAddress) {
-            user.address = createdAddress;
+        .then(function(createdRecipe) {
+            recipe.recipeName = createdRecipe;
             /*
              This return statement will return a promise object.
              That means that the following .then in this chain
