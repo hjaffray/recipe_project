@@ -46,7 +46,7 @@ export function show(req, res) {
             res.send(err);
         });
 }
-// Create a new user
+// Create a new recipe
 export function create(req, res) {
     /*
       In this function we are taking the request body
@@ -56,11 +56,11 @@ export function create(req, res) {
       we must create each document individually, and then associate
       the address to the user after we know its id
     */
-    let recipe = req.body.recipeName;
+    let recipeName = req.body.recipeName;
     let address = req.body.address;
-    let user = req.body;
+    let recipe = req.body;
     // Start off by saving the address
-    Recipe.create(recipe)
+    Recipe.create(recipeName)
         /*
          Address was successfully saved, now associate saved address to the
          user we are about to create and then save the user
@@ -73,12 +73,12 @@ export function create(req, res) {
              will not occur until after the user is saved, and will be given the result
              of this promise resolving, which is the created user object
             */
-            return User.create(user);
+            return Recipe.create(recipe);
         })
         // User and Address saved successfully! return 201 with the created user object
-        .then(function(createdUser) {
+        .then(function(createdRecipe) {
             res.status(201);
-            res.json(createdUser);
+            res.json(createdRecipe);
         })
         // An error was encountered during either the save of the address or the save of the user
         .catch(function(err) {
