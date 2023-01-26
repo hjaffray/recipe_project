@@ -59,7 +59,5 @@ let userSchema = Schema({
   NOTE since the nameSchema is embedded within userSchema, it does NOT have
   to be created as a model!
  */
-//let Address = mongoose.model('Address', addressSchema);
 let User = mongoose.model('User', userSchema);
-// Export the two created models, Address and User
 export {User};

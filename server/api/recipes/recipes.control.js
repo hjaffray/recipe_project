@@ -3,7 +3,7 @@ import {Recipe} from './recipes.model';
 // Find all Recipes
 export function index(req, res) {
     Recipe.find()
-        .populate('recipeName')
+        .populate('userReviews')
         .exec()
         // This then method will only be called if the query was successful, so no need to error check!
         .then(function(recipes) {
@@ -48,25 +48,15 @@ export function show(req, res) {
 }
 // Create a new recipe
 export function create(req, res) {
-    /*
-      In this function we are taking the request body
-      As it was sent and using it as the JSON for the address
-      and user objects.
-      Since address is stored in a separate collection from user
-      we must create each document individually, and then associate
-      the address to the user after we know its id
-    */
-    let recipeName = req.body.recipeName;
-    let address = req.body.address;
     let recipe = req.body;
     // Start off by saving the address
-    Recipe.create(recipeName)
+    Recipe.create(recipe)
         /*
          Address was successfully saved, now associate saved address to the
          user we are about to create and then save the user
         */
         .then(function(createdRecipe) {
-            recipe.recipeName = createdRecipe;
+            recipe = createdRecipe;
             /*
              This return statement will return a promise object.
              That means that the following .then in this chain
@@ -88,16 +78,23 @@ export function create(req, res) {
 }
 // Update a user
 export function update(req, res) {
-    // Start by trying to find the user by its id
-    User.findById(req.params.id)
-        .populate('address')
+    // Start by trying to find the recipe by its id
+    Recipe.findById(req.params.id)
+        .populate()
         .exec()
         // Update user and address
-        .then(function(existingUser) {
+        .then(function(existingRecipe) {
             // If user exists, update all fields of the object
-            if(existingUser) {
-                existingUser.name.firstName = req.body.name.firstName;
-                existingUser.name.lastName = req.body.name.lastName;
+            if(existingRecipe) {
+                existingRecipe.recipeName = req.body.recipeName;
+                existingRecipe.description = req.body.description;
+                existingRecipe.pictureURL = req.body.pictureURL;
+                existingRecipe.prepTime = req.body.prepTime;
+                existingRecipe.cookTime = req.body.cookTime;
+                existingRecipe.directions = req.body.directions;
+                existingRecipe.ingredients = req.body.ingredients;
+                existingRecipe.userReviews = req.body.userReviews;
+
                 /*
                  Promise.all takes an array of promises as an argument
                  It ensures that all the promises in the array have successfully resolved
@@ -107,11 +104,11 @@ export function update(req, res) {
                  for each promise that was passed
                 */
                 return Promise.all([
-                    existingUser.increment().save()
+                    existingRecipe.increment().save()
                 ]);
             } else {
                 // User was not found
-                return existingUser;
+                return existingRecipe;
             }
         })
         // This .then will be called after the Promise.all resolves, or be called with null if the user was not found
@@ -134,31 +131,23 @@ export function update(req, res) {
             res.send(err);
         });
 }
-// Remove a user
+// Remove a recipe
 export function destroy(req, res) {
-    User.findById(req.params.id)
-        .populate('address')
+    Recipe.findById(req.params.id)
+        .populate()
         .exec()
-        .then(function(existingUser) {
-            if(existingUser) {
-                /*
-                  This is the equivalent of cascading delete in a relational database
-                  If the user was found, remove both the user object and the address object
-        from
-                  their respective collections. Only record the delete as successful if
-        both objects
-                  are deleted
-                 */
+        .then(function(existingRecipe) {
+            if(existingRecipe) {
                 return Promise.all([
-                    existingUser.remove()
+                    existingRecipe.remove()
                 ]);
             } else {
-                return existingUser;
+                return existingRecipe;
             }
         })
         // Delete was successful
-        .then(function(deletedUser) {
-            if(deletedUser) {
+        .then(function(deletedRecipe) {
+            if(deletedRecipe) {
                 res.status(204).send();
             } else {
                 // User was not found
