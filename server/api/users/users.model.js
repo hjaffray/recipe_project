@@ -5,23 +5,6 @@ let Schema = mongoose.Schema;
   that will be used
  */
 
-// This schema represents the address of the user
-/*
-Reusing some aspects of the user schema provide
-
-let addressSchema = Schema({
-  // addressLine1 is a simple String type that is required
-  addressLine1: {type: String, required: true},
-  // addressLine2 is a simple String type that is NOT required
-  addressLine2: {type: String, required: false},
-  // city is a simple String type that is required
-  city: {type: String, required: true},
-  // state is a simple String type that is required
-  state: {type: String, required: true},
-  // zip is a simple Number type that is required
-  zip: {type: Number, required: true}
-});
- */
 
 // This schema represents the name of the user
 let nameSchema = Schema({

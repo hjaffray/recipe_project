@@ -25,7 +25,7 @@ let recipeSchema = Schema({
     userReviews: [{type: Schema.Types.ObjectId, ref: 'Review'}]
 });
 
-let reviews = Schema({
+let review = Schema({
     // reviewDesc is a simple String & is required
     reviewDesc: {type: String, required: true},
     // reviewRating is a Number between 0-5 (to represent stars) & is required
@@ -41,6 +41,6 @@ let reviews = Schema({
  */
 
 let Recipe = mongoose.model('Recipe', recipeSchema);
-let Review = mongoose.model('Review', reviews);
+let Review = mongoose.model('Review', review);
 
 export {Recipe, Review};

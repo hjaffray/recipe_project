@@ -1,9 +1,9 @@
 'use strict';
-import {Recipe} from './recipes.model';
+import {Recipe, Review} from './recipes.model';
 // Find all Recipes
 export function index(req, res) {
     Recipe.find()
-        .populate('userReviews')
+        .populate()
         .exec()
         // This then method will only be called if the query was successful, so no need to error check!
         .then(function(recipes) {
@@ -24,7 +24,7 @@ export function index(req, res) {
 // Find details for one recipe
 export function show(req, res) {
     Recipe.findById(req.params.id)
-        .populate('recipeName')
+        .populate()
         .exec()
         .then(function(existingRecipe) {
             /*
@@ -46,23 +46,60 @@ export function show(req, res) {
             res.send(err);
         });
 }
+export function showReview(req, res) {
+
+    Recipe.findById(req.params.id)
+        .populate()
+        .exec()
+        .then(function(existingReview) {
+            if(existingReview) {
+               // console.log(existingReview.userReviews.find(req.params.reviewId));
+                const reviewContent = Review.find({id: req.params.reviewId});
+
+                res.status(200);
+                res.json(reviewContent);
+            } else {
+                // Recipe was not found
+                res.status(404);
+                res.json({message: 'Review Not Found'});
+            }
+        })
+        .catch(function(err) {
+            res.status(400);
+            res.send(err);
+        });
+}
 // Create a new recipe
+export function createReview(req, res) {
+    //assign review content from post body then create review
+    let review = req.body;
+    Review.create(review)
+        .then(function(assignReview){
+            //then find respective recipe and update user reviews
+            // with newly created review
+            return Recipe.findByIdAndUpdate(req.params.id,
+                {$push :{userReviews: assignReview}})
+        })
+        .then(function (updatedRecipe){
+            //Need to update updateRecipe obj before returning
+            if(updatedRecipe){
+                res.status(200);
+                res.json(updatedRecipe.userReviews);
+            } else {
+                res.status(404);
+                res.json({message: 'Failed to Add Review'})
+            }
+        })
+        .catch(function(err){
+            res.status(400);
+            res.send(err);
+        })
+}
 export function create(req, res) {
     let recipe = req.body;
-    // Start off by saving the address
     Recipe.create(recipe)
-        /*
-         Address was successfully saved, now associate saved address to the
-         user we are about to create and then save the user
-        */
         .then(function(createdRecipe) {
             recipe = createdRecipe;
-            /*
-             This return statement will return a promise object.
-             That means that the following .then in this chain
-             will not occur until after the user is saved, and will be given the result
-             of this promise resolving, which is the created user object
-            */
             return Recipe.create(recipe);
         })
         // User and Address saved successfully! return 201 with the created user object
@@ -76,7 +113,7 @@ export function create(req, res) {
             res.send(err);
         });
 }
-// Update a user
+// Update a recipe
 export function update(req, res) {
     // Start by trying to find the recipe by its id
     Recipe.findById(req.params.id)
@@ -93,7 +130,7 @@ export function update(req, res) {
                 existingRecipe.cookTime = req.body.cookTime;
                 existingRecipe.directions = req.body.directions;
                 existingRecipe.ingredients = req.body.ingredients;
-                existingRecipe.userReviews = req.body.userReviews;
+               // existingRecipe.userReviews = req.body.userReviews;
 
                 /*
                  Promise.all takes an array of promises as an argument
@@ -115,7 +152,7 @@ export function update(req, res) {
         .then(function(savedObjects) {
             // savedObjects should be defined if Promise.all was invoked (user was found)
             if(savedObjects) {
-                res.status(200);
+                res.status(201);
                 // The order of responses are guaranteed to be the same as the order of the promises, so we can assume
                 // the second element of the array is the result of the user update
                 res.json(savedObjects[1]);

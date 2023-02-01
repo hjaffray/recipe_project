@@ -5,8 +5,6 @@ import errors from './components/errors';
 import path from 'path';
 import * as users from './api/users';
 import * as recipes from './api/recipes/recipe.index';
-//import {recipe_router} from "./api/recipes/recipe.index";
-
 
 
 export default function(app) {
