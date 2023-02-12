@@ -47,17 +47,14 @@ export function show(req, res) {
         });
 }
 export function showReview(req, res) {
-
-    Recipe.findById(req.params.id)
+    //find individual review and return it
+    Review.findById(req.params.reviewId)
         .populate()
         .exec()
         .then(function(existingReview) {
             if(existingReview) {
-               // console.log(existingReview.userReviews.find(req.params.reviewId));
-                const reviewContent = Review.find({id: req.params.reviewId});
-
                 res.status(200);
-                res.json(reviewContent);
+                res.json(existingReview);
             } else {
                 // Recipe was not found
                 res.status(404);
@@ -75,7 +72,7 @@ export function createReview(req, res) {
     let review = req.body;
     Review.create(review)
         .then(function(assignReview){
-            //then find respective recipe and update user reviews
+            //then find respective recipe and update userReviews
             // with newly created review
             return Recipe.findByIdAndUpdate(req.params.id,
                 {$push :{userReviews: assignReview}})
@@ -132,14 +129,6 @@ export function update(req, res) {
                 existingRecipe.ingredients = req.body.ingredients;
                // existingRecipe.userReviews = req.body.userReviews;
 
-                /*
-                 Promise.all takes an array of promises as an argument
-                 It ensures that all the promises in the array have successfully resolved
-        before
-                 continuing the promise chain. It will pass to the next .then an array of
-        results, one
-                 for each promise that was passed
-                */
                 return Promise.all([
                     existingRecipe.increment().save()
                 ]);
@@ -168,6 +157,43 @@ export function update(req, res) {
             res.send(err);
         });
 }
+// Update a review
+export function updateReview(req, res) {
+
+    Review.findById(req.params.reviewId)
+        .populate()
+        .exec()
+        .then(function(existingReview){
+            if(existingReview){
+                //console.log(existingReview);
+                existingReview.reviewDesc = req.body.reviewDesc;
+                existingReview.reviewRating = req.body.reviewRating;
+                existingReview.reviewUser = req.body.reviewUser;
+
+                return Promise.all([
+                    existingReview.increment().save()
+
+                ]);
+            } else{
+                //review not found
+                return existingReview;
+            }
+        })
+        .then(function (updatedReview){
+            //Need to update updateRecipe obj before returning
+            if(updatedReview){
+                res.status(200);
+                res.json(updatedReview);
+            } else {
+                res.status(404);
+                res.json({message: 'Failed to Update Review'})
+            }
+        })
+        .catch(function(err){
+            res.status(400);
+            res.send(err);
+        })
+}
 // Remove a recipe
 export function destroy(req, res) {
     Recipe.findById(req.params.id)
@@ -193,6 +219,31 @@ export function destroy(req, res) {
             }
         })
         // Address or user delete failed
+        .catch(function(err) {
+            res.status(400);
+            res.send(err);
+        });
+}
+
+export function destroyReview(req, res) {
+    Review.findByIdAndDelete(req.params.reviewId)
+        .populate()
+        .exec()
+        .then(function(existingReview) {
+            return Recipe.findByIdAndUpdate(req.params.id,
+                {$pull :{userReviews: req.params.reviewId}})
+        })
+        // Delete was successful
+        .then(function(deletedReview) {
+            if(deletedReview) {
+                res.status(204).send();
+            } else {
+
+                res.status(404);
+                res.json({message: 'Review Not Found'});
+            }
+        })
+        // delete failed
         .catch(function(err) {
             res.status(400);
             res.send(err);

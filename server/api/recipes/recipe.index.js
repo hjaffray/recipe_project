@@ -10,8 +10,8 @@ router.post('/', controller.create);
 router.post('/:id/reviews/', controller.createReview);
 // PUT method
 router.put('/:id', controller.update);
-//router.put('/:id/reviews/', controller.createReview);
+router.put('/:id/reviews/:reviewId', controller.updateReview);
 // DELETE method
 router.delete('/:id', controller.destroy);
-//router.delete('/:id/reviews/:reviewId', controller.destroy());
+router.delete('/:id/reviews/:reviewId', controller.destroyReview);
 export {router};
