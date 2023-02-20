@@ -82,7 +82,7 @@ export function create(req, res) {
   */
 
   let user = req.body;
-  // Start off by saving the address
+  // save user info from body then create
   User.create(user)
     .then(function(createdUser) {
         user = createdUser;
@@ -121,8 +121,7 @@ results, one
          for each promise that was passed
         */
         return Promise.all([
-          //existingUser.userReviews.increment().save(),
-          //existingUser.increment().save()
+          existingUser.increment().save()
         ]);
       } else {
         // User was not found
@@ -152,7 +151,7 @@ results, one
 // Remove a user
 export function destroy(req, res) {
   User.findById(req.params.id)
-    .populate('address')
+    .populate()
     .exec()
     .then(function(existingUser) {
       if(existingUser) {
@@ -165,7 +164,6 @@ both objects
           are deleted
          */
         return Promise.all([
-          existingUser.address.remove(),
           existingUser.remove()
         ]);
       } else {

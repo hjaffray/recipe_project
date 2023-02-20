@@ -5,13 +5,13 @@ let router = express.Router();
 router.get('/', controller.index);
 router.get('/:id', controller.show);
 router.get('/:id/reviews/:reviewId', controller.showReview);
-// POST method
+// POST methods
 router.post('/', controller.create);
 router.post('/:id/reviews/', controller.createReview);
-// PUT method
+// PUT methods
 router.put('/:id', controller.update);
 router.put('/:id/reviews/:reviewId', controller.updateReview);
-// DELETE method
+// DELETE methods
 router.delete('/:id', controller.destroy);
 router.delete('/:id/reviews/:reviewId', controller.destroyReview);
 export {router};

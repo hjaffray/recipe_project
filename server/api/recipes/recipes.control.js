@@ -116,9 +116,9 @@ export function update(req, res) {
     Recipe.findById(req.params.id)
         .populate()
         .exec()
-        // Update user and address
+        // Update the recipe
         .then(function(existingRecipe) {
-            // If user exists, update all fields of the object
+            // If the recipe exists, update all fields of the object
             if(existingRecipe) {
                 existingRecipe.recipeName = req.body.recipeName;
                 existingRecipe.description = req.body.description;
@@ -141,7 +141,7 @@ export function update(req, res) {
         .then(function(savedObjects) {
             // savedObjects should be defined if Promise.all was invoked (user was found)
             if(savedObjects) {
-                res.status(201);
+                res.status(200);
                 // The order of responses are guaranteed to be the same as the order of the promises, so we can assume
                 // the second element of the array is the result of the user update
                 res.json(savedObjects[1]);
@@ -159,7 +159,7 @@ export function update(req, res) {
 }
 // Update a review
 export function updateReview(req, res) {
-
+    //find review from its db with the reviewId that was passed in the PUT req
     Review.findById(req.params.reviewId)
         .populate()
         .exec()
@@ -226,12 +226,15 @@ export function destroy(req, res) {
 }
 
 export function destroyReview(req, res) {
+
     Review.findByIdAndDelete(req.params.reviewId)
         .populate()
         .exec()
         .then(function(existingReview) {
-            return Recipe.findByIdAndUpdate(req.params.id,
-                {$pull :{userReviews: req.params.reviewId}})
+            if(existingReview) {
+                return Recipe.findByIdAndUpdate(req.params.id,
+                    {$pull: {userReviews: req.params.reviewId}})
+            }
         })
         // Delete was successful
         .then(function(deletedReview) {
