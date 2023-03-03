@@ -1,17 +1,52 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>
-                <i class="fa fa-camera-retro fa-lg"></i> Here's a camera icon using Font Awesome!
-            </h1>
-            <br><br>
-            <h1 class="page-header">
-                More to come soon!
-                <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="../../assets/fonts/bootstrap-icons.svg#emoji-sunglasses"/>
-                </svg>
-                <br><br>
-            </h1>
+            <h1 class="page-header"> Project 2</h1>
+            <hr size="5">
+
+            <hr size="5">
+            <create-user></create-user>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Update User</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of users">
+                    <td>
+                        <button [routerLink]="['/users', user._id]"
+                                type="button" class="btn btn-primary">More Details
+                        </button>
+                    </td>
+                    <td>{{user.name.firstName}}</td>
+                    <td>{{user.name.lastName}}</td>
+                    <td>{{user.userName}}</td>
+                    <td>{{user.emailAddress}}</td>
+                    <td><update-user [user]="user"></update-user></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+            <hr size="5">
+            <button (click)="clickEvent($event)">Click Me</button>
+
+            <child [name]="input" (selected)="selected($event)"></child>
         </div>
+    </div>
+    <div class="row">        <div class="col-md-12 col-lg-6">
+        DIV 1
+    </div>
+        <div class="col-md-12 col-lg-6">
+            DIV 2
+        </div>
+
     </div>
 </div>

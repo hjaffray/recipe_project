@@ -1,0 +1,50 @@
+<button type="button" class="btn btn-primary" (click)="openModal(createUserTemplate)">Create New User</button>
+
+<ng-template #createUserTemplate>
+    <form id="createUser" name="createUser" role="form" class="form-horizontal">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Creating a new user</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div role="alert" [hidden]="!formError" class="alert alert-danger">{{ formError }}</div>
+            <div role="alert" [hidden]="!formInfo" class="alert alert-info">{{ formInfo }}</div>
+            <div class="form-group">
+                <label for="firstName" class="col-2 col-sm-2 control-label">First Name</label>
+                <div class="col-10 col-sm-10">
+                    <input id="firstName" name="firstName" required="required" [(ngModel)]="user.name.firstName"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName" class="col-2 col-sm-2 control-label">Last Name</label>
+                <div class="col-10 col-sm-10">
+                    <input id="lastName" name="lastName" required="required" [(ngModel)]="user.name.lastName"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="username" class="col-2 col-sm-2 control-label">User Name</label>
+                <div class="col-10 col-sm-10">
+                    <input id="username" name="username" required="required"
+                           [(ngModel)]="user.userName" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="emailAddress" class="col-2 col-sm-2 control-label">Email Address</label>
+                <div class="col-10 col-sm-10">
+                    <input id="emailAddress" name="emailAddress" [(ngModel)]="user.emailAddress"
+                           class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="modalRef.hide()" type="button" class="btn btndefault">
+                Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="createUser()">Create User</button>
+        </div>
+    </form>
+</ng-template>

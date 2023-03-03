@@ -8,13 +8,10 @@ import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MainComponent } from './main.component';
-import { ChildComponent} from "./child.component";
-import {UserService} from '../../components/services/user.service';
-import {UpdateUserModule} from '../../components/modals/updateUser/updateUser.module';
-import { CreateUserModule } from '../../components/modals/createUser/createUser.module';
+import { UsersComponent } from './users.component';
+
 export const ROUTES: Routes = [
-    { path: 'home', component: MainComponent },
+    { path: 'users/:id', component: UsersComponent }
 ];
 
 // update @NgModule declaration to be as follows:
@@ -23,25 +20,18 @@ export const ROUTES: Routes = [
         BrowserModule,
         FormsModule,
         BrowserAnimationsModule,
-        UpdateUserModule,
-        CreateUserModule,
         RouterModule.forChild(ROUTES),
 
         TooltipModule.forRoot(),
     ],
     declarations: [
-        MainComponent,
-        ChildComponent,
-
+        UsersComponent,
     ],
 
     exports: [
-        MainComponent,
-        ChildComponent,
+        UsersComponent,
     ],
 
-    providers: [
-        UserService,
-    ]
+    providers: []
 })
-export class MainModule {}
+export class UsersModule {}
