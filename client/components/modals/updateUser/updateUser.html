@@ -1,0 +1,25 @@
+<button type="button" class="btn btn-primary" (click)="openModal(updateUserTemplate)">Update User</button>
+
+<ng-template #updateUserTemplate>
+    <div role="alert" [hidden]="!formError" class="alert alert-danger">{{ formError }}</div>
+    <div role="alert" [hidden]="!formInfo" class="alert alert-info">{{ formInfo }}</div>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Age: <input [(ngModel)]="user.age">
+        First Name: <input [(ngModel)]="user.name.firstName">
+        Middle Name: <input [(ngModel)]="user.name.middleName">
+        Last Name: <input [(ngModel)]="user.name.lastName">
+        Address Line 1: <input [(ngModel)]="user.address.addressLine1">
+        Address Line 2: <input [(ngModel)]="user.address.addressLine2">
+        City: <input [(ngModel)]="user.address.city">
+        State: <input [(ngModel)]="user.address.state">
+        Zip: <input [(ngModel)]="user.address.zip">
+    </div>
+    <button (click)="updateUser()" class="btn btn-primary">Update User</button>
+</ng-template>
+

@@ -1,16 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>
-                <i class="fa fa-camera-retro fa-lg"></i> Here's a camera icon using Font Awesome!
-            </h1>
-            <br><br>
-            <h1 class="page-header">
-                Lab 12: Angular Routing
-            </h1>
+            <h1 class="page-header">Lab 13: ngx-bootstrap Modal Dialogs</h1>
+
             <h1>Enter a value here: <input [(ngModel)]="input"></h1>
-            <h1>You entered: {{ input }}</h1>
-            <h2>Contents of values array:</h2>
+
+            <h2>You entered: {{ input }}</h2>
+
+            <h1>Contents of values array:</h1>
             <ul>
                 <li *ngFor="let value of values">{{ value }}</li>
             </ul>
@@ -19,6 +16,7 @@
             <h1>{{ valueToSquare }} * {{ valueToSquare }} = {{ valueToSquare | square }}</h1>
 
             <hr size="5">
+            <create-user></create-user>
             <table class="table">
                 <thead>
                 <tr>
@@ -32,12 +30,16 @@
                     <th>City</th>
                     <th>State</th>
                     <th>Zip</th>
+                    <th>Update User</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let user of users">
-                    <td><button [routerLink]="['/users', user._id]">{{user._id}}</button></td>
-                    <td>{{user._id}}</td>
+                    <td>
+                        <button [routerLink]="['/users', user._id]"
+                                type="button" class="btn btn-primary">More Details
+                        </button>
+                    </td>
                     <td>{{user.age}}</td>
                     <td>{{user.name.firstName}}</td>
                     <td>{{user.name.middleName}}</td>
@@ -52,13 +54,20 @@
                 </tbody>
             </table>
 
-            <a [routerLink]="['/about']">About Me</a>
+            <a [routerLink]="['/about']">About the Author</a>
 
             <hr size="5">
-            <button (click)="clickEvent($event)"> Click Me</button>
+            <button (click)="clickEvent($event)">Click Me</button>
 
-            <child [name]="input"(selected)="selected($event)"></child>
-            <update-user></update-user>
+            <child [name]="input" (selected)="selected($event)"></child>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            DIV 1
+        </div>
+        <div class="col-md-12 col-lg-6">
+            DIV 2
         </div>
     </div>
 </div>

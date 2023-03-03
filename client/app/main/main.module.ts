@@ -13,9 +13,8 @@ import { ChildComponent} from "./child.component";
 import {UserService} from '../../components/services/user.service';
 import {SquarePipe} from '../../components/pipes/square.pipe';
 import {AboutModule} from '../about/about.module';
-import {UpdateUserModule} from '../../components/modals/updateUser.module';
-import {UpdateUserComponent} from "../../components/modals/updateUser.component";
-
+import {UpdateUserModule} from '../../components/modals/updateUser/updateUser.module';
+import { CreateUserModule } from '../../components/modals/createUser/createUser.module';
 export const ROUTES: Routes = [
     { path: 'home', component: MainComponent },
 ];
@@ -28,6 +27,7 @@ export const ROUTES: Routes = [
         BrowserAnimationsModule,
         AboutModule,
         UpdateUserModule,
+        CreateUserModule,
         RouterModule.forChild(ROUTES),
 
         TooltipModule.forRoot(),
