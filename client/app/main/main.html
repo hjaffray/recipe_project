@@ -6,7 +6,7 @@
             </h1>
             <br><br>
             <h1 class="page-header">
-                Lab 11: Pipes and HttpClient within Angular
+                Lab 12: Angular Routing
             </h1>
             <h1>Enter a value here: <input [(ngModel)]="input"></h1>
             <h1>You entered: {{ input }}</h1>
@@ -36,6 +36,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let user of users">
+                    <td><button [routerLink]="['/users', user._id]">{{user._id}}</button></td>
                     <td>{{user._id}}</td>
                     <td>{{user.age}}</td>
                     <td>{{user.name.firstName}}</td>
@@ -46,9 +47,18 @@
                     <td>{{user.address.city}}</td>
                     <td>{{user.address.state}}</td>
                     <td>{{user.address.zip}}</td>
+                    <td><update-user [user]="user"></update-user></td>
                 </tr>
                 </tbody>
             </table>
+
+            <a [routerLink]="['/about']">About Me</a>
+
+            <hr size="5">
+            <button (click)="clickEvent($event)"> Click Me</button>
+
+            <child [name]="input"(selected)="selected($event)"></child>
+            <update-user></update-user>
         </div>
     </div>
 </div>

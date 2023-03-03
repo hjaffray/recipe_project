@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../components/services/user.service';
 import {User} from '../../components/interfaces/User';
 
+
 @Component({
     selector: 'main',
     templateUrl: './main.html',
@@ -39,6 +40,14 @@ export class MainComponent implements OnInit {
     private handleError(error: any): Promise<any> {
         console.error('Something has gone wrong', error);
         return Promise.reject(error.message || error);
+    }
+
+    public clickEvent($event){
+        console.dir($event);
+    }
+
+    public selected(boolean){
+        console.log(boolean);
     }
 
     ngOnInit() {

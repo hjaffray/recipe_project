@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Details for User {{user?._id || ""}}</h1>
+            Id: <input value="{{user?._id}}"> <br>
+            Age: <input value="{{user?.age}}"> <br>
+            First Name: <input value="{{user?.name.firstName}}"> <br>
+            Middle Name: <input value="{{user?.name.middleName}}"> <br>
+            Last Name: <input value="{{user?.name.lastName}}"> <br>
+            Address Line 1: <input value="{{user?.address.addressLine1}}"> <br>
+            Address Line 2: <input value="{{user?.address.addressLine2}}"> <br>
+            City: <input value="{{user?.address.city}}"> <br>
+            State: <input value="{{user?.address.state}}"> <br>
+            Zip: <input value="{{user?.address.zip}}"> <br>
+        </div>
+    </div>
+</div>
