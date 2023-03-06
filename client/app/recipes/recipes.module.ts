@@ -10,7 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RecipesComponent } from './recipes.component';
 import { ReviewsComponent} from "../reviews/reviews.component";
+import {CreateReviewModule} from "../../components/modals/createReview/createReview.module";
 import { DemoTooltipPlacementComponent} from "../reviews/toolTip.component";
+
 
 export const ROUTES: Routes = [
     { path: 'recipes/:id', component: RecipesComponent },
@@ -24,8 +26,8 @@ export const ROUTES: Routes = [
         FormsModule,
         BrowserAnimationsModule,
         RouterModule.forChild(ROUTES),
-
         TooltipModule.forRoot(),
+        CreateReviewModule,
     ],
     declarations: [
         RecipesComponent,

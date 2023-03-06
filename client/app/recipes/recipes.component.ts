@@ -16,11 +16,13 @@ export class RecipesComponent implements OnInit {
     private recipe: Recipe;
     private reviews: Review[];
     private reviewId;
+    private recipeId;
     static parameters = [ActivatedRoute, RecipeService];
 
     constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
         this.route = route;
         this.recipeService = recipeService;
+
     }
 
 

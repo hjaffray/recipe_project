@@ -11,6 +11,8 @@
             Directions: {{recipe?.directions}}<br>
             Ingredients: {{recipe?.ingredients}}<br>
             Review ID's: {{recipe?.userReviews}}<br>
+            Test User: 63eab27ca276c016e18d4eb2 <br>
+            <create-review></create-review>
             <ul>
                 <li *ngFor="let review of reviews">
                 <button [routerLink]="['/recipes', recipe._id,'reviews', review]" type="button" class="btn btn-primary">
@@ -18,9 +20,6 @@
                 </button>
                 </li>
             </ul>
-<!--            {{getReview(recipe._id, )}}-->
-<!--            Review Content: {{review?._id}} <br>-->
-<!--            <button [routerLink]="['/recipes/"></button>-->
         </div>
     </div>
     <div class="return-footer">

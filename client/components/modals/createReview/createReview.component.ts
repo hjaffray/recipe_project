@@ -1,28 +1,24 @@
 import {Component, EventEmitter, Input, Output, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {Recipe} from '../../interfaces/Recipe';
+import {Recipe, Review} from "../../interfaces/Recipe";
 import {RecipeService} from '../../services/recipe.service';
 
 @Component({
-    selector: 'create-recipe',
-    templateUrl: './createRecipe.html'
+    selector: 'create-review',
+    templateUrl: './createReview.html'
 })
-export class CreateRecipeComponent {
+export class CreateReviewComponent {
     private formError: String;
     private formInfo: String;
     private modalRef?: BsModalRef;
 
-    private recipe: Recipe = {
-        __v: undefined,
+    private recipeId;
+    private review: Review = {
         _id: undefined,
-        recipeName: undefined,
-        description: undefined,
-        pictureURL: undefined,
-        prepTime: undefined,
-        cookTime: undefined,
-        directions: undefined,
-        ingredients: undefined,
-        userReviews: undefined
+        reviewDesc: undefined,
+        reviewRating: undefined,
+        dateOfReview: undefined,
+        reviewUser: undefined,
     };
 
     static parameters = [BsModalService, RecipeService];
@@ -31,12 +27,15 @@ export class CreateRecipeComponent {
     openModal(template: TemplateRef<any>) {
         this.modalRef = this.modalService.show(template);
     }
+    setRecipeId(recipeId: string){
+        this.recipeId = recipeId;
+    }
+    createReview() {
 
-    createRecipe() {
-        this.recipeService.createRecipe(this.recipe)
-            .then(createdRecipe => {
-                this.recipe = createdRecipe;
-                this.formInfo = `Recipe with id ${createdRecipe._id} successfully created!`;
+        this.recipeService.createReview(this.recipeId, this.review)
+            .then(createdReview => {
+                this.review = createdReview;
+                this.formInfo = `Review with id ${createdReview._id} successfully created!`;
                 this.formError = null;
             })
             .catch(error => {

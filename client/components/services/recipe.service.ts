@@ -35,12 +35,12 @@ export class RecipeService {
             .toPromise();
     }
 
-    // updateReview(recipe: Recipe, review: Review): Promise<Review> {
-    //     let url = `/api/recipes/${recipe._id}/reviews/${review._id}`;
-    //     return this.httpClient
-    //         .put<Recipe>(url, recipe, review)
-    //         .toPromise();
-    // }
+    updateReview(recipe: Recipe, review: Review): Promise<Review> {
+        let url = `/api/recipes/${recipe._id}/reviews/${review._id}`;
+        return this.httpClient
+            .put<Review>(url, review)
+            .toPromise();
+    }
     createRecipe(recipe: Recipe): Promise<Recipe> {
         return this.httpClient
             .post<Recipe>(`/api/recipes`, recipe)
