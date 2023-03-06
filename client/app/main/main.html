@@ -33,20 +33,48 @@
                 </tbody>
             </table>
 
+            <create-recipe></create-recipe>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Info </th>
+                    <th>Recipe Name</th>
+                    <th>Description</th>
+                    <th>Picture URL</th>
+                    <th>Prep Time</th>
+                    <th>Cook Time</th>
+                    <th>Directions</th>
+                    <th>Ingredients</th>
+                    <th>User Reviews</th>
+<!--                    <th>Update Recipe</th>-->
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let recipe of recipes">
+                    <td>
+                        <button [routerLink]="['/recipes', recipe._id]"
+                                type="button" class="btn btn-primary">More Details
+                        </button>
+                    </td>
+                    <td>{{recipe.recipeName}}</td>
+                    <td>{{recipe.description}}</td>
+                    <td>{{recipe.pictureURL}}</td>
+                    <td>{{recipe.prepTime}}</td>
+                    <td>{{recipe.cookTime}}</td>
+                    <td>{{recipe.directions.length}}</td>
+                    <td>{{recipe.ingredients.length}}</td>
+                    <td>{{recipe.userReviews.length}}</td>
+                    <td><update-recipe [recipe]="recipe"></update-recipe></td>
+                    <td>
+                        <button (click)="[recipeService.deleteRecipe(recipe), reloadPage()]"
+                        type="button" class="btn btn-primary"
+                        tooltip="Are you sure you'd like to delete this Recipe?"
+                        placement="top"> Delete Recipe</button>
+                    </td>
+                </tr>
+                </tbody>
 
-
-            <hr size="5">
-            <button (click)="clickEvent($event)">Click Me</button>
-
-            <child [name]="input" (selected)="selected($event)"></child>
+            </table>
         </div>
-    </div>
-    <div class="row">        <div class="col-md-12 col-lg-6">
-        DIV 1
-    </div>
-        <div class="col-md-12 col-lg-6">
-            DIV 2
-        </div>
-
     </div>
 </div>

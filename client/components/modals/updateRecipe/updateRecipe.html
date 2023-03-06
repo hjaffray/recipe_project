@@ -1,0 +1,23 @@
+<button type="button" class="btn btn-primary" (click)="openModal(updateRecipeTemplate)">Update Recipe</button>
+
+<ng-template #updateRecipeTemplate>
+    <div role="alert" [hidden]="!formError" class="alert alert-danger">{{ formError }}</div>
+    <div role="alert" [hidden]="!formInfo" class="alert alert-info">{{ formInfo }}</div>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Update Recipe Modal</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Recipe Name: <input [(ngModel)]="recipe.recipeName"><br>
+        Description: <input [(ngModel)]="recipe.description"><br>
+        Picture URL: <input [(ngModel)]="recipe.pictureURL"><br>
+        Prep Time: <input [(ngModel)]="recipe.prepTime"><br>
+        Cook Time: <input [(ngModel)]="recipe.cookTime"><br>
+        Directions: <input [(ngModel)]="recipe.directions"><br>
+        Ingredients: <input [(ngModel)]="recipe.ingredients"><br>
+        User Reviews: <input [(ngModel)]="recipe.userReviews"><br>
+    </div>
+    <button (click)="updateRecipe()" class="btn btn-primary">Update Recipe</button>
+</ng-template>

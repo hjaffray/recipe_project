@@ -13,6 +13,10 @@ import { ChildComponent} from "./child.component";
 import {UserService} from '../../components/services/user.service';
 import {UpdateUserModule} from '../../components/modals/updateUser/updateUser.module';
 import { CreateUserModule } from '../../components/modals/createUser/createUser.module';
+import { CreateRecipeModule} from '../../components/modals/createRecipe/createRecipe.module';
+import {RecipeService} from "../../components/services/recipe.service";
+import {UpdateRecipeModule} from "../../components/modals/updateRecipe/updateRecipe.module";
+
 export const ROUTES: Routes = [
     { path: 'home', component: MainComponent },
 ];
@@ -25,6 +29,8 @@ export const ROUTES: Routes = [
         BrowserAnimationsModule,
         UpdateUserModule,
         CreateUserModule,
+        CreateRecipeModule,
+        UpdateRecipeModule,
         RouterModule.forChild(ROUTES),
 
         TooltipModule.forRoot(),
@@ -42,6 +48,7 @@ export const ROUTES: Routes = [
 
     providers: [
         UserService,
+        RecipeService,
     ]
 })
 export class MainModule {}

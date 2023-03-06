@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+                Review Content: {{review?._id}} <br>
+                Review Description: {{review?.reviewDesc}}<br>
+                Review Rating: {{review?.reviewRating}} <br>
+                Date of Review: {{review?.dateOfReview}} <br>
+                User Id: {{review?.reviewUser}} <br>
+        </div>
+        <button (click)="[recipeService.deleteReview(recipeId, review._id), goBack()]"
+                type="button" class="btn btn-primary"
+                tooltip="Are you sure you'd like to delete this review?"> Delete Review</button>
+    </div>
+    <div class="return-footer">
+        <button (click)=goBack() type="button" class="btn btn-primary">
+            Return
+        </button>
+    </div>
+</div>
+

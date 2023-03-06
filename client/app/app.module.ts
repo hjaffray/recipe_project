@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from './app.component';
 import {MainModule} from './main/main.module';
 import {UsersModule} from './users/users.module';
+import {RecipesModule} from './recipes/recipes.module';
 
 export function tokenGetter() {
     return localStorage.getItem('id_token');
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
 
         RouterModule.forRoot(appRoutes, {enableTracing: process.env.NODE_ENV === 'development'}),
         MainModule,
-        UsersModule
+        UsersModule,
+        RecipesModule
     ],
     declarations: [
         AppComponent,

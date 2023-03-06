@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {UserService} from '../../components/services/user.service';
 import {User} from '../../components/interfaces/User';
+import {RecipeService} from "../../components/services/recipe.service";
+import {Recipe, Review} from "../../components/interfaces/Recipe";
+
 
 @Component({
     selector: 'main',
@@ -13,14 +16,19 @@ export class MainComponent implements OnInit {
     public values: string[];
     // public valueToSquare: number;
     public users: User[];
+    public recipes: Recipe[];
+    public reviews: Review[];
     public input: string;
-    static parameters = [HttpClient, UserService];
+    static parameters = [HttpClient, UserService, RecipeService];
 
-    constructor(private http: HttpClient, private userService: UserService) {
+    constructor(private http: HttpClient, private userService: UserService,
+                private recipeService: RecipeService) {
         this.http = http;
         this.userService = userService;
+        this.recipeService = recipeService;
         //this.setData();
         this.getUserData();
+        this.getRecipeData();
     }
 
     // private setData() {
@@ -35,6 +43,21 @@ export class MainComponent implements OnInit {
             })
             .catch(this.handleError);
     }
+    public getRecipeData() {
+        this.recipeService.getAllRecipes()
+            .then(response => {
+                this.recipes = response.recipes as Recipe[];
+            })
+            .catch(this.handleError);
+    }
+
+    // public getReviewData(){
+    //     this.recipeService.getReviewById()
+    //         .then(response => {
+    //             this.reviews = response.review as Review[];
+    //         })
+    // }
+
 
     private handleError(error: any): Promise<any> {
         console.error('Something has gone wrong', error);
@@ -49,6 +72,9 @@ export class MainComponent implements OnInit {
         console.log(boolean);
     }
 
+    public reloadPage(){
+        window.location.reload();
+    }
     ngOnInit() {
     }
 }

@@ -1,0 +1,80 @@
+<button type="button" class="btn btn-primary" (click)="openModal(createRecipeTemplate)">
+    Create New Recipe</button>
+
+<ng-template #createRecipeTemplate>
+    <form id="createRecipe" name="createRecipe" role="form" class="form-horizontal">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Creating a new Recipe</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div role="alert" [hidden]="!formError" class="alert alert-danger">{{ formError }}</div>
+            <div role="alert" [hidden]="!formInfo" class="alert alert-info">{{ formInfo }}</div>
+            <div class="form-group">
+                <label for="recipeName" class="col-2 col-sm-2 control-label">Recipe Name</label>
+                <div class="col-10 col-sm-10">
+                    <input id="recipeName" name="recipeName" required="required"
+                           [(ngModel)]="recipe.recipeName" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-2 col-sm-2 control-label">Description</label>
+                <div class="col-10 col-sm-10">
+                    <input id="description" name="description" required="required" [(ngModel)]="recipe.description"
+                           class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pictureURL" class="col-2 col-sm-2 control-label">Picture URL</label>
+                <div class="col-10 col-sm-10">
+                    <input id="pictureURL" name="pictureURL" [(ngModel)]="recipe.pictureURL"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prepTime" class="col-2 col-sm-2 control-label">Prep Time</label>
+                <div class="col-10 col-sm-10">
+                    <input id="prepTime" name="prepTime" [(ngModel)]="recipe.prepTime"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cookTime" class="col-2 col-sm-2 control-label">Cook Time</label>
+                <div class="col-10 col-sm-10">
+                    <input id="cookTime" name="cookTime" [(ngModel)]="recipe.cookTime"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="directions" class="col-2 col-sm-2 control-label">Directions</label>
+                <div class="col-10 col-sm-10">
+                    <input id="directions" name="directions" [(ngModel)]="recipe.directions"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ingredients" class="col-2 col-sm-2 control-label">Ingredients</label>
+                <div class="col-10 col-sm-10">
+                    <input id="ingredients" name="ingredients" [(ngModel)]="recipe.ingredients"
+                           class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="userReviews" class="col-2 col-sm-2 control-label">User Reviews</label>
+                <div class="col-10 col-sm-10">
+                    <input id="userReviews" name="userReviews" [(ngModel)]="recipe.userReviews"
+                           class="form-control"/>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button (click)="modalRef.hide()" type="button" class="btn btndefault">
+                Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="createRecipe()">Create recipe</button>
+        </div>
+    </form>
+</ng-template>
