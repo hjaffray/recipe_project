@@ -35,8 +35,8 @@ export class RecipeService {
             .toPromise();
     }
 
-    updateReview(recipe: Recipe, review: Review): Promise<Review> {
-        let url = `/api/recipes/${recipe._id}/reviews/${review._id}`;
+    updateReview(recipeId, review: Review): Promise<Review> {
+        let url = `/api/recipes/${recipeId}/reviews/${review._id}`;
         return this.httpClient
             .put<Review>(url, review)
             .toPromise();

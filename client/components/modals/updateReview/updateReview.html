@@ -1,0 +1,17 @@
+<button type="button" class="btn btn-primary" (click)="openModal(updateReviewTemplate)">Update Review</button>
+
+<ng-template #updateReviewTemplate>
+    <div role="alert" [hidden]="!formError" class="alert alert-danger">{{ formError }}</div>
+    <div role="alert" [hidden]="!formInfo" class="alert alert-info">{{ formInfo }}</div>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Update Review Modal</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Review Description: <input [(ngModel)]="review.reviewDesc"><br>
+        Review Rating: <input [(ngModel)]="review.reviewRating"><br>
+    </div>
+    <button (click)="updateReview()" class="btn btn-primary">Update Review</button>
+</ng-template>

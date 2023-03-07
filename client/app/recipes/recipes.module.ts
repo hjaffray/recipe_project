@@ -10,8 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RecipesComponent } from './recipes.component';
 import { ReviewsComponent} from "../reviews/reviews.component";
-import {CreateReviewModule} from "../../components/modals/createReview/createReview.module";
+import { CreateReviewModule} from "../../components/modals/createReview/createReview.module";
 import { DemoTooltipPlacementComponent} from "../reviews/toolTip.component";
+import { UpdateReviewModule } from '../../components/modals/updateReview/updateReview.module';
 
 
 export const ROUTES: Routes = [
@@ -28,6 +29,7 @@ export const ROUTES: Routes = [
         RouterModule.forChild(ROUTES),
         TooltipModule.forRoot(),
         CreateReviewModule,
+        UpdateReviewModule,
     ],
     declarations: [
         RecipesComponent,

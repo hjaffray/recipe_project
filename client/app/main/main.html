@@ -3,10 +3,8 @@
         <div class="col-lg-12">
             <h1 class="page-header"> Project 2</h1>
             <hr size="5">
-
-            <hr size="5">
             <create-user></create-user>
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -32,22 +30,25 @@
                 </tr>
                 </tbody>
             </table>
-
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <div>-->
             <create-recipe></create-recipe>
-            <table class="table">
+            <table>
                 <thead>
-                <tr>
-                    <th>Info </th>
-                    <th>Recipe Name</th>
-                    <th>Description</th>
-                    <th>Picture URL</th>
-                    <th>Prep Time</th>
-                    <th>Cook Time</th>
-                    <th>Directions</th>
-                    <th>Ingredients</th>
-                    <th>User Reviews</th>
-<!--                    <th>Update Recipe</th>-->
-                </tr>
+                    <tr>
+                        <th>Info </th>
+                        <th>Recipe Name</th>
+                        <th class="d-none d-small-table-cell">Description</th>
+                        <th>Picture URL</th>
+                        <th>Prep Time</th>
+                        <th>Cook Time</th>
+                        <th>Directions</th>
+                        <th>Ingredients</th>
+                        <th>User Reviews</th>
+    <!--                    <th>Update Recipe</th>-->
+                    </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let recipe of recipes">

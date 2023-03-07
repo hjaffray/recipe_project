@@ -31,6 +31,7 @@ export const ROUTES: Routes = [
         CreateUserModule,
         CreateRecipeModule,
         UpdateRecipeModule,
+
         RouterModule.forChild(ROUTES),
 
         TooltipModule.forRoot(),
