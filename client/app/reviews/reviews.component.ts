@@ -13,8 +13,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ReviewsComponent implements OnInit {
 
-    private recipe: Recipe;
-    private review: Review;
+    public review: Review;
     public recipeId;
     static parameters = [ActivatedRoute, RecipeService];
 
@@ -35,10 +34,7 @@ export class ReviewsComponent implements OnInit {
         this.recipeId = this.route.snapshot.paramMap.get('id');
     }
 
-    getReviewData(){
-        // this.route.paramMap()
-    }
-    goBack(){
+    public goBack(){
         window.history.back();
     }
 

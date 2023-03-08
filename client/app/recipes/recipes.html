@@ -2,20 +2,19 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Details for {{recipe?.recipeName}}</h1>
+            <img src="{{recipe?.pictureURL}}" alt="Missing Photo" width="128" height="128"> <br>
             Id: {{recipe?._id}} <br>
-<!--            Recipe Name: {{recipe?.recipeName}} <br>-->
             Description: {{recipe?.description}} <br>
-            Picture URL: {{recipe?.pictureURL}} <br>
             Prep Time: {{recipe?.prepTime}} <br>
             Cook Time: {{recipe?.cookTime}} <br>
             Directions: {{recipe?.directions}}<br>
             Ingredients: {{recipe?.ingredients}}<br>
             Review ID's: {{recipe?.userReviews}}<br>
-            Test User: 63eab27ca276c016e18d4eb2 <br>
-            <create-review></create-review>
+            *Copy to ClipBoard for Review Creatation* Test User: 63eab27ca276c016e18d4eb2 <br>
+            <create-review [recipeId]="recipeId"></create-review>
             <ul>
                 <li *ngFor="let review of reviews">
-                <button [routerLink]="['/recipes', recipe._id,'reviews', review]" type="button" class="btn btn-primary">
+                <button [routerLink]="['/recipes', recipe._id,'reviews', review]" type="button" class="btn btn-info btn-sm">
                         Review
                 </button>
                 </li>
@@ -23,7 +22,7 @@
         </div>
     </div>
     <div class="return-footer">
-        <button (click)=goBack() type="button" class="btn btn-primary">
+        <button (click)=goBack() type="button" class="btn btn-primary btn-sm">
             Return
         </button>
     </div>

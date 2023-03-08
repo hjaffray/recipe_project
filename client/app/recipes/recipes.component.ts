@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RecipeService} from '../../components/services/recipe.service';
 import {Recipe, Review} from '../../components/interfaces/Recipe';
-
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -13,10 +12,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class RecipesComponent implements OnInit {
 
-    private recipe: Recipe;
-    private reviews: Review[];
-    private reviewId;
-    private recipeId;
+    public recipe: Recipe;
+    public reviews: Review[];
+    public recipeId;
     static parameters = [ActivatedRoute, RecipeService];
 
     constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
@@ -36,9 +34,10 @@ export class RecipesComponent implements OnInit {
 
                 })
         });
+        this.recipeId = this.route.snapshot.paramMap.get('id');
     }
 
-    goBack(){
+    public goBack(){
         window.history.back();
     }
 

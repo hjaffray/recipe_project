@@ -2,12 +2,12 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Details for User {{user?._id || ""}}</h1>
-            Id: <input value="{{user?._id}}"> <br>
-            First Name: <input value="{{user?.name.firstName}}"> <br>
-            Last Name: <input value="{{user?.name.lastName}}"> <br>
-            Username: <input value="{{user?.userName}}"> <br>
-            Email Address: <input value="{{user?.emailAddress}}"> <br>
+            First Name: {{user?.name.firstName}}<br>
+            Last Name: {{user?.name.lastName}} <br>
+            Username: {{user?.userName}} <br>
+            Email Address: {{user?.emailAddress}} <br>
         </div>
     </div>
+    <button (click)="goBack()" class="btn btn-primary btn-sm">Return </button>
 </div>
 

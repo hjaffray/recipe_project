@@ -64,17 +64,10 @@ export class MainComponent implements OnInit {
         return Promise.reject(error.message || error);
     }
 
-    public clickEvent($event){
-        console.dir($event);
-    }
-
-    public selected(boolean){
-        console.log(boolean);
-    }
-
     public reloadPage(){
         window.location.reload();
     }
+
     ngOnInit() {
     }
 }

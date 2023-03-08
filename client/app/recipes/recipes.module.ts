@@ -5,14 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TooltipModule, TooltipConfig } from 'ngx-bootstrap/tooltip';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { RecipesComponent } from './recipes.component';
 import { ReviewsComponent} from "../reviews/reviews.component";
 import { CreateReviewModule} from "../../components/modals/createReview/createReview.module";
-import { DemoTooltipPlacementComponent} from "../reviews/toolTip.component";
+// import { RecipeTooltipPlacementComponent} from "./recipeToolTip.component";
 import { UpdateReviewModule } from '../../components/modals/updateReview/updateReview.module';
+// import { ReviewTooltipPlacementComponent} from "../reviews/toolTip.component";
 
 
 export const ROUTES: Routes = [
@@ -34,13 +33,16 @@ export const ROUTES: Routes = [
     declarations: [
         RecipesComponent,
         ReviewsComponent,
-        DemoTooltipPlacementComponent,
+        // RecipeTooltipPlacementComponent,
+        // ReviewTooltipPlacementComponent,
+
     ],
 
     exports: [
         RecipesComponent,
         ReviewsComponent,
-        DemoTooltipPlacementComponent,
+        // RecipeTooltipPlacementComponent,
+        // ReviewTooltipPlacementComponent,
     ],
 
     providers: []

@@ -4,7 +4,7 @@
 <ng-template #createReviewTemplate>
     <form id="createReview" name="createReview" role="form" class="form-horizontal">
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Creating a new Review</h4>
+            <h4 class="modal-title pull-left">Creating a new Review for </h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -44,10 +44,10 @@
 
         </div>
         <div class="modal-footer">
-            <button (click)="modalRef.hide()" type="button" class="btn btndefault">
+            <button (click)="modalRef.hide()" type="button" class="btn btn-default">
                 Cancel
             </button>
-            <button type="submit" class="btn btn-primary" (click)="createReview()">Create Review</button>
+            <button type="submit" class="btn btn-success" (click)="createReview()">Create Review</button>
         </div>
     </form>
 </ng-template>

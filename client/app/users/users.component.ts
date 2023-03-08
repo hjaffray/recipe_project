@@ -12,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class UsersComponent implements OnInit {
 
-    private user: User;
+    public user: User;
 
     static parameters = [ActivatedRoute, UserService];
 
@@ -30,5 +30,9 @@ export class UsersComponent implements OnInit {
                 });
         });
 
+    }
+
+    goBack(){
+        window.history.back();
     }
 }

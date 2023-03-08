@@ -8,11 +8,16 @@
 //
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //
-// import { ReviewsComponent} from "./reviews.component";
+// // import { RecipesComponent } from './recipes.component';
+// import { ReviewsComponent} from "../reviews/reviews.component";
+// import { CreateReviewModule} from "../../components/modals/createReview/createReview.module";
+// import { ReviewTooltipPlacementComponent} from "../reviews/toolTip.component";
+// import { UpdateReviewModule } from '../../components/modals/updateReview/updateReview.module';
+//
 //
 // export const ROUTES: Routes = [
 //     // { path: 'recipes/:id', component: RecipesComponent },
-//     { path: 'recipes/:id/reviews/:reviewId', component: ReviewsComponent}
+//     // { path: 'recipes/:id/reviews/:reviewId', component: ReviewsComponent}
 // ];
 //
 // // update @NgModule declaration to be as follows:
@@ -22,15 +27,18 @@
 //         FormsModule,
 //         BrowserAnimationsModule,
 //         RouterModule.forChild(ROUTES),
-//
 //         TooltipModule.forRoot(),
+//         CreateReviewModule,
+//         UpdateReviewModule,
 //     ],
 //     declarations: [
-//         ReviewsComponent,
+//         // ReviewsComponent,
+//         ReviewTooltipPlacementComponent,
 //     ],
 //
 //     exports: [
-//         ReviewsComponent,
+//         // ReviewsComponent,
+//         ReviewTooltipPlacementComponent,
 //     ],
 //
 //     providers: []

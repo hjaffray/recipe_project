@@ -8,11 +8,12 @@ import {RecipeService} from '../../services/recipe.service';
     templateUrl: './createReview.html'
 })
 export class CreateReviewComponent {
+    @Input() recipeId: string;
     private formError: String;
     private formInfo: String;
     private modalRef?: BsModalRef;
 
-    private recipeId;
+
     private review: Review = {
         _id: undefined,
         reviewDesc: undefined,
@@ -35,7 +36,7 @@ export class CreateReviewComponent {
         this.recipeService.createReview(this.recipeId, this.review)
             .then(createdReview => {
                 this.review = createdReview;
-                this.formInfo = `Review with id ${createdReview._id} successfully created!`;
+                this.formInfo = `Review with successfully created!`;
                 this.formError = null;
             })
             .catch(error => {

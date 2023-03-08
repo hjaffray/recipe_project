@@ -35,14 +35,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="prepTime" class="col-2 col-sm-2 control-label">Prep Time</label>
+                <label for="prepTime" class="col-2 col-sm-2 control-label">Prep Time (Minutes)</label>
                 <div class="col-10 col-sm-10">
                     <input id="prepTime" name="prepTime" [(ngModel)]="recipe.prepTime"
                            class="form-control"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="cookTime" class="col-2 col-sm-2 control-label">Cook Time</label>
+                <label for="cookTime" class="col-2 col-sm-2 control-label">Cook Time (Minutes)</label>
                 <div class="col-10 col-sm-10">
                     <input id="cookTime" name="cookTime" [(ngModel)]="recipe.cookTime"
                            class="form-control"/>
@@ -62,19 +62,12 @@
                            class="form-control"/>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="userReviews" class="col-2 col-sm-2 control-label">User Reviews</label>
-                <div class="col-10 col-sm-10">
-                    <input id="userReviews" name="userReviews" [(ngModel)]="recipe.userReviews"
-                           class="form-control"/>
-                </div>
-            </div>
         </div>
         <div class="modal-footer">
             <button (click)="modalRef.hide()" type="button" class="btn btndefault">
                 Cancel
             </button>
-            <button type="submit" class="btn btn-primary" (click)="createRecipe()">Create recipe</button>
+            <button type="submit" class="btn btn-success" (click)="createRecipe()">Create recipe</button>
         </div>
     </form>
 </ng-template>
