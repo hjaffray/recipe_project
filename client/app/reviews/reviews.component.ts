@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RecipeService} from '../../components/services/recipe.service';
 import {Recipe, Review} from '../../components/interfaces/Recipe';
-
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -17,7 +16,7 @@ export class ReviewsComponent implements OnInit {
     public recipeId;
     static parameters = [ActivatedRoute, RecipeService];
 
-    constructor(private route: ActivatedRoute, private recipeService: RecipeService) {
+    constructor(private route: ActivatedRoute, public recipeService: RecipeService) {
         this.route = route;
         this.recipeService = recipeService;
     }
